@@ -18,8 +18,6 @@ namespace Game10003
         
         Color BlueTeam = new Color(0, 160, 220);
 
-       // Draw Rpaddle = new Draw.Capsule(30, 220, 30, 380, 10);
-
         public void Setup()
         {
             Window.SetSize(800, 600);
