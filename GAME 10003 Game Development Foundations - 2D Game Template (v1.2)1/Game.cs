@@ -21,6 +21,12 @@ namespace Game10003
 
         RedPaddle redpaddle = new RedPaddle();
 
+        BluePaddle bluepaddle = new BluePaddle();
+
+        Ball ball = new Ball();
+
+        
+
         public void Setup()
         {
             Window.SetSize(800, 600);
@@ -31,7 +37,9 @@ namespace Game10003
         /// </summary>
         public void Update()
         {
-            Window.ClearBackground(Color.Black);
+            Window.ClearBackground(Color.Black);   
+
+            bluepaddle.Render();
 
             redpaddle.Render();
 
@@ -40,30 +48,15 @@ namespace Game10003
             Draw.Circle(400, 300, 200);
 
             Draw.LineColor = Color.Gray;
-            Draw.Line(400, 600, 400, 0);
+            Draw.Line(400, 600, 400, 0);  
             
+            ball.Render();
 
             
-            
-
-            /*Draw.Capsule(30, 220, 30, 380, 10);
-            Draw.FillColor = BlueTeam;
-            Draw.LineColor = Color.White;
-            Draw.LineSize = 2;
-            
-
-            Draw.Capsule(770, 220, 770, 380, 10);
-            Draw.FillColor = RedTeam;
-            Draw.LineColor = Color.White;
-            Draw.LineSize = 2;
-            
-
-            Draw.Circle(400, 300, 15);
-            Draw.FillColor = Color.White;*/
 
             if (Input.IsKeyboardKeyDown(KeyboardInput.W))
             {
-
+                
             }
             else if (Input.IsKeyboardKeyDown(KeyboardInput.S))
             {
