@@ -25,7 +25,7 @@ namespace GAME_10003_Game_Development_Foundations___2D_Game_Template__v1._2_1
             Draw.FillColor = BPColor;
             Draw.LineColor = BLColor;
             Draw.LineSize = 2;
-            Draw.Capsule(30, 220, 30, 380, 10);
+            Draw.Capsule(BPposition.X, BPposition.Y - 80, BPposition.X, BPposition.Y + 80, 10);
         }
     }
 }
