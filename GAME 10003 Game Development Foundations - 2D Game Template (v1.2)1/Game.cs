@@ -1,4 +1,5 @@
 ﻿// Include code libraries you need below (use the namespace).
+using GAME_10003_Game_Development_Foundations___2D_Game_Template__v1._2_1;
 using System;
 using System.Data;
 using System.Numerics;
@@ -18,6 +19,8 @@ namespace Game10003
         
         Color BlueTeam = new Color(0, 160, 220);
 
+        RedPaddle redpaddle = new RedPaddle();
+
         public void Setup()
         {
             Window.SetSize(800, 600);
@@ -30,14 +33,20 @@ namespace Game10003
         {
             Window.ClearBackground(Color.Black);
 
-            Draw.Line(400, 600, 400, 0);
-            Draw.LineColor = Color.Gray;
+            redpaddle.Render();
 
-            Draw.Circle(400, 300, 200);
             Draw.LineColor = Color.Gray;
             Draw.FillColor = Color.Black;
+            Draw.Circle(400, 300, 200);
 
-            Draw.Capsule(30, 220, 30, 380, 10);
+            Draw.LineColor = Color.Gray;
+            Draw.Line(400, 600, 400, 0);
+            
+
+            
+            
+
+            /*Draw.Capsule(30, 220, 30, 380, 10);
             Draw.FillColor = BlueTeam;
             Draw.LineColor = Color.White;
             Draw.LineSize = 2;
@@ -49,8 +58,8 @@ namespace Game10003
             Draw.LineSize = 2;
             
 
-            Draw.Circle(400, 300, 20);
-            Draw.FillColor = Color.White;
+            Draw.Circle(400, 300, 15);
+            Draw.FillColor = Color.White;*/
 
             if (Input.IsKeyboardKeyDown(KeyboardInput.W))
             {
