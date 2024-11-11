@@ -25,7 +25,7 @@ namespace Game10003
 
         Ball ball = new Ball();
 
-        float paddlespeed = 100;
+        float paddlespeed = 5;
 
         public void Setup()
         {
@@ -52,18 +52,27 @@ namespace Game10003
             
             ball.Render();
 
-            
 
             if (Input.IsKeyboardKeyDown(KeyboardInput.W))
             {
                 float y = bluepaddle.BPposition.Y;
                 float x = bluepaddle.BPposition.X;
 
-                bluepaddle.BPposition = new Vector2(x, y - (paddlespeed));
+                if (y - (paddlespeed) >= 100)
+                {
+                    bluepaddle.BPposition = new Vector2(x, y - (paddlespeed));
+                }
             }
             else if (Input.IsKeyboardKeyDown(KeyboardInput.S))
             {
+                float y = bluepaddle.BPposition.Y;
+                float x = bluepaddle.BPposition.X;
 
+                if (y + (paddlespeed) <= 500)
+                {
+                    bluepaddle.BPposition = new Vector2(x, y + (paddlespeed));
+                }
+                
             }
 
         }

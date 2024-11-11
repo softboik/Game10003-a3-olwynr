@@ -20,7 +20,7 @@ namespace GAME_10003_Game_Development_Foundations___2D_Game_Template__v1._2_1
            Draw.FillColor = RPColor;
            Draw.LineColor = RLColor;
            Draw.LineSize = 2;
-           Draw.Capsule(770, 220, 770, 380, 10);
+           Draw.Capsule(RPposition.X, RPposition.Y - 80, RPposition.X, RPposition.Y + 80, 10);
         }
     }
 }
