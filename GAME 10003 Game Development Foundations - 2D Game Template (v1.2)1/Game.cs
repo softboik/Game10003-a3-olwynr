@@ -54,6 +54,7 @@ namespace Game10003
 
         Ball[] bScoreboard = new Ball[5];
         Ball[] rScoreboard = new Ball[5];
+       
         public void Setup()
         {
             Window.SetTitle("Pong Pt. 2: Electric Boogaloo");
