@@ -18,7 +18,11 @@ namespace Game10003
 
         BluePaddle bluepaddle = new BluePaddle();
 
-        Ball ball = new Ball();
+        // Assigning class array
+        Color[] ballColor = new Color[10];
+        int ballColorIndex = 0;
+
+        Ball ball = null;
 
         // Paddle speed
         float paddlespeed = 5;
@@ -43,23 +47,33 @@ namespace Game10003
         float rpbRadii = 0;
 
         // Randomizing bounce angle
-        float randomY = Random.Float((float) -0.8, (float) 0.8);
+        float randomY = Random.Float((float) -1, (float) 1);
 
+        
         public void Setup()
         {
+            Window.SetTitle("Pong Pt. 2: Electric Boogaloo");
             Window.SetSize(800, 600);
+
+
             
             // Assigning value
             bpbRadii = ballradius + bpradius;
             // bpb = blue paddle ball
             rpbRadii = ballradius + rpradius;
             //rpb = red paddle ball
+
+            for (int i = 0; i < ballColor.Length; i++)
+            {
+                ballColor[i] = Random.Color();
+            }
+            ball = new Ball(ballColor[ballColorIndex]);
         }
 
         
         public void Update()
         {
-            Window.SetTitle("Pong Pt. 2: Electric Boogaloo");
+            
             Window.ClearBackground(Color.Black);   
 
             // Paddle Renders
@@ -80,7 +94,7 @@ namespace Game10003
             ball.Ballposition.Y += ballspeedy;
 
             // slightly randomizing the angle the ball bounces at
-            randomY = Random.Float((float)-0.8, (float)0.8);
+            randomY = Random.Float((float) -1, (float) 1);
 
             // Game Start
             if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
@@ -194,6 +208,36 @@ namespace Game10003
                 redpaddle.RPposition.Y = 300;
 
                 bluepaddle.BPposition.Y = 300;
+            }
+            
+            // Arrayed and Randomized ball color changes
+            if (Input.IsKeyboardKeyPressed(KeyboardInput.C))
+            {
+                Console.WriteLine(ballColorIndex);
+                    if (ballColorIndex == (ballColor.Length - 1))
+                {
+                    ballColorIndex = 0;
+                }
+                    else
+                {
+                    ballColorIndex += 1;
+                }
+
+                ball.ChangeColor(ballColor[ballColorIndex]);
+            }
+            else if (Input.IsKeyboardKeyPressed(KeyboardInput.X))
+            {
+                Console.WriteLine(ballColorIndex);
+                if (ballColorIndex == 0)
+                {
+                    ballColorIndex = (ballColor.Length - 1);
+                }
+                else
+                {
+                    ballColorIndex -= 1;
+                }
+
+                ball.ChangeColor(ballColor[ballColorIndex]);
             }
         }
     }
