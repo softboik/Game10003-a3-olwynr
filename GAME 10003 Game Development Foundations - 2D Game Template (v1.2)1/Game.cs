@@ -49,7 +49,11 @@ namespace Game10003
         // Randomizing bounce angle
         float randomY = Random.Float((float) -1, (float) 1);
 
-        
+        int redScore = 0;
+        int blueScore = 0;
+
+        Ball[] bScoreboard = new Ball[5];
+        Ball[] rScoreboard = new Ball[5];
         public void Setup()
         {
             Window.SetTitle("Pong Pt. 2: Electric Boogaloo");
@@ -63,11 +67,21 @@ namespace Game10003
             rpbRadii = ballradius + rpradius;
             //rpb = red paddle ball
 
+            // Initializing balls
             for (int i = 0; i < ballColor.Length; i++)
             {
                 ballColor[i] = Random.Color();
             }
             ball = new Ball(ballColor[ballColorIndex]);
+
+            for (int i = 0; i < rScoreboard.Length; i++)
+            {
+                rScoreboard[i] = new Ball(Color.Gray);
+            }
+            for (int i = 0; i < bScoreboard.Length; i++)
+            {
+                bScoreboard[i] = new Ball(Color.Gray);
+            }
         }
 
         
@@ -112,6 +126,20 @@ namespace Game10003
                     ballspeedx = -3;
                     ballspeedy = 0;
                 }
+            }
+
+            // Scoreboards
+            for (int i = 0; i < rScoreboard.Length; i++)
+            {
+                rScoreboard[i].Ballposition.Y = 28;
+                rScoreboard[i].Ballposition.X = 428 + (i * 42);
+                rScoreboard[i].Render();
+            }
+            for (int i = 0; i < rScoreboard.Length; i++)
+            {
+                bScoreboard[i].Ballposition.Y = 28;
+                bScoreboard[i].Ballposition.X = 372 - (i * 42);
+                bScoreboard[i].Render();
             }
 
             // Blue Paddle Controls
@@ -184,7 +212,7 @@ namespace Game10003
                 ballspeedy = (ballspeedy * -1);
             }
            
-            // When ball hits wall behind either paddle, game resets
+            // When ball hits wall behind either paddle, game resets and keeps score
             if (ball.Ballposition.X <= 0)
             {
                 ball.Ballposition.X = 400;
@@ -196,6 +224,8 @@ namespace Game10003
                 redpaddle.RPposition.Y = 300;
 
                 bluepaddle.BPposition.Y = 300;
+
+                redScore += 1;
             }
             else if (ball.Ballposition.X >= 800)
             {
@@ -208,6 +238,8 @@ namespace Game10003
                 redpaddle.RPposition.Y = 300;
 
                 bluepaddle.BPposition.Y = 300;
+
+                blueScore += 1;
             }
             
             // Arrayed and Randomized ball color changes
