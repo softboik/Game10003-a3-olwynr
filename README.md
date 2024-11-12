@@ -3,7 +3,8 @@
 This is my game, Pong Pt. 2.
 
 To start, you hit the space bar
-hitting C or X will rotate through a predetermined set of random colors for the ball
+
+Hitting C or X will rotate through a predetermined set of random colors for the ball
 
 The W and S keys control the Blue Paddle
 The Up and Down arrows control the Red Paddle
