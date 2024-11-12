@@ -42,21 +42,23 @@ namespace Game10003
         {
             Window.SetSize(800, 600);
             
+            // Assigning value
             bpbRadii = ballradius + bpradius;
+            // bpb = blue paddle ball
             rpbRadii = ballradius + rpradius;
+            //rpb = red paddle ball
         }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
+        
         public void Update()
         {
             Window.ClearBackground(Color.Black);   
 
+            // Paddle Renders
             bluepaddle.Render();
-
             redpaddle.Render();
 
+            // Field Lines
             Draw.LineColor = Color.Gray;
             Draw.FillColor = Color.Black;
             Draw.Circle(400, 300, 200);
@@ -64,12 +66,15 @@ namespace Game10003
             Draw.LineColor = Color.Gray;
             Draw.Line(400, 600, 400, 0);  
             
+            // Spawn Ball
             ball.Render();
             ball.Ballposition.X += ballspeedx;
             ball.Ballposition.Y += ballspeedy;
 
+            // slightly randomizing the angle the ball bounces at
             randomY = Random.Float((float)-0.7, (float)0.7);
 
+            // Game Start
             if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
             {
                 float y = ball.Ballposition.Y;
@@ -87,6 +92,7 @@ namespace Game10003
                 }
             }
 
+            // Blue Paddle Controls
             if (Input.IsKeyboardKeyDown(KeyboardInput.W))
             {
                 float y = bluepaddle.BPposition.Y;
@@ -108,6 +114,8 @@ namespace Game10003
                 }
                 
             }
+            
+            // Red Paddle controls
             if (Input.IsKeyboardKeyDown(KeyboardInput.Up))
             {
                 float y = redpaddle.RPposition.Y;
@@ -128,9 +136,11 @@ namespace Game10003
                     redpaddle.RPposition = new Vector2(x, y + (paddlespeed));
                 }
             }
-            
+           
+            // Paddle collisions and velocity adjustment
             bool doBallandRedOverlap = Vector2.Distance(ball.Ballposition, redpaddle.RPposition) <= rpbRadii;
             bool doBallandBlueOverlap = Vector2.Distance(ball.Ballposition, bluepaddle.BPposition) <= bpbRadii;
+            
             if (doBallandRedOverlap == true && ball.Ballposition.X >= 750)
             {
                 ballspeedx = (ballspeedx * -1) - 1;
@@ -141,6 +151,8 @@ namespace Game10003
                 ballspeedx = (ballspeedx * -1) + 1;
                 ballspeedy = (ballspeedy + randomY);
             }
+           
+            // Roof/Floor collisions
             if (ball.Ballposition.Y <= 14)
             {
                 ballspeedy = (ballspeedy * -1);
@@ -149,6 +161,8 @@ namespace Game10003
             {
                 ballspeedy = (ballspeedy * -1);
             }
+           
+            // When ball hits wall behind either paddle, game resets
             if (ball.Ballposition.X <= 0)
             {
                 ball.Ballposition.X = 400;
