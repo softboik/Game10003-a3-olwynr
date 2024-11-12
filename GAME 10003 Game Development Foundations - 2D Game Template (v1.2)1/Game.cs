@@ -29,9 +29,9 @@ namespace Game10003
 
         bool startdir = Random.CoinFlip();
 
-        float ballradius = 14;
-        float rpradius = 10;
-        float bpradius = 10;
+        float ballradius = 42;
+        float rpradius = 42;
+        float bpradius = 42;
 
         float bpbRadii = 0;
         float rpbRadii = 0;
@@ -125,12 +125,13 @@ namespace Game10003
                 }
             }
             
-            bool doPiecesOverlap = Vector2.Distance(ball.Ballposition, redpaddle.RPposition) <= rpbRadii;
-            if (doPiecesOverlap == true /*rpradius + ballradius <= 13*/ /*ball.Ballposition.X == 700*/)
+            bool doBallandRedOverlap = Vector2.Distance(ball.Ballposition, redpaddle.RPposition) <= rpbRadii;
+            bool doBallandBlueOverlap = Vector2.Distance(ball.Ballposition, bluepaddle.BPposition) <= bpbRadii;
+            if (doBallandRedOverlap == true && ball.Ballposition.X >= 750)
             {
                 ballspeedx = (ballspeedx * -1) - 1;
             }
-            else if (ball.Ballposition.X == 100)
+            else if (doBallandBlueOverlap == true && ball.Ballposition.X <= 50)
             {
                 ballspeedx = (ballspeedx * -1) + 1;
             }
