@@ -35,8 +35,8 @@ namespace Game10003
 
         float bpbRadii = 0;
         float rpbRadii = 0;
-        // float circlesRadii = circleRadius1 + circleRadius2;
-        // bool doCirclesOverlap = Vector2.Distance(circlePosition1, circlePosition2) <= circlesRadii;
+
+        float randomY = Random.Float((float) -0.7, (float) 0.7);
 
         public void Setup()
         {
@@ -68,6 +68,8 @@ namespace Game10003
             ball.Ballposition.X += ballspeedx;
             ball.Ballposition.Y += ballspeedy;
 
+            randomY = Random.Float((float)-0.7, (float)0.7);
+
             if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
             {
                 float y = ball.Ballposition.Y;
@@ -76,10 +78,12 @@ namespace Game10003
                 if (ballspeedx == 0 && startdir == true)
                 {
                     ballspeedx = 3;
+                    ballspeedy = 0;
                 }
                 else if (ballspeedx == 0 && startdir == false)
                 {
                     ballspeedx = -3;
+                    ballspeedy = 0;
                 }
             }
 
@@ -130,13 +134,45 @@ namespace Game10003
             if (doBallandRedOverlap == true && ball.Ballposition.X >= 750)
             {
                 ballspeedx = (ballspeedx * -1) - 1;
+                ballspeedy = (ballspeedy + randomY);
             }
             else if (doBallandBlueOverlap == true && ball.Ballposition.X <= 50)
             {
                 ballspeedx = (ballspeedx * -1) + 1;
+                ballspeedy = (ballspeedy + randomY);
             }
+            if (ball.Ballposition.Y <= 14)
+            {
+                ballspeedy = (ballspeedy * -1);
+            }
+            else if (ball.Ballposition.Y >= 586)
+            {
+                ballspeedy = (ballspeedy * -1);
+            }
+            if (ball.Ballposition.X <= 0)
+            {
+                ball.Ballposition.X = 400;
+                ball.Ballposition.Y = 300;
+                
+                ballspeedx = 0;
+                ballspeedy = 0;
 
+                redpaddle.RPposition.Y = 300;
 
+                bluepaddle.BPposition.Y = 300;
+            }
+            else if (ball.Ballposition.X >= 800)
+            {
+                ball.Ballposition.X = 400;
+                ball.Ballposition.Y = 300;
+
+                ballspeedx = 0;
+                ballspeedy = 0;
+
+                redpaddle.RPposition.Y = 300;
+
+                bluepaddle.BPposition.Y = 300;
+            }
         }
     }
 }
