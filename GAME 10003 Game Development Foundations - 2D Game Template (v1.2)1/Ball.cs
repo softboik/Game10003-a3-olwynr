@@ -25,7 +25,7 @@ namespace GAME_10003_Game_Development_Foundations___2D_Game_Template__v1._2_1
                 Draw.FillColor = BallColor;
                 Draw.LineColor = BallLColor;
                 Draw.LineSize = 2;
-                Draw.Circle(400, 300, 15);
+                Draw.Circle(Ballposition.X, Ballposition.Y, 15);
             }
         
     }

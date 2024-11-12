@@ -27,6 +27,11 @@ namespace Game10003
 
         float paddlespeed = 5;
 
+        float ballspeedx = 0;
+        float ballspeedy = 0;
+
+        bool startdir = Random.CoinFlip();
+
         public void Setup()
         {
             Window.SetSize(800, 600);
@@ -51,7 +56,23 @@ namespace Game10003
             Draw.Line(400, 600, 400, 0);  
             
             ball.Render();
+            ball.Ballposition.X += ballspeedx;
+            ball.Ballposition.Y += ballspeedy;
 
+            if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
+            {
+                float y = ball.Ballposition.Y;
+                float x = ball.Ballposition.X;
+
+                if (ballspeedx == 0 && startdir == true)
+                {
+                    ballspeedx = 3;
+                }
+                else if (ballspeedx == 0 && startdir == false)
+                {
+                    ballspeedx = -3;
+                }
+            }
 
             if (Input.IsKeyboardKeyDown(KeyboardInput.W))
             {
@@ -73,6 +94,26 @@ namespace Game10003
                     bluepaddle.BPposition = new Vector2(x, y + (paddlespeed));
                 }
                 
+            }
+            if (Input.IsKeyboardKeyDown(KeyboardInput.Up))
+            {
+                float y = redpaddle.RPposition.Y;
+                float x = redpaddle.RPposition.X;
+
+                if (y - (paddlespeed) >= 100)
+                {
+                    redpaddle.RPposition = new Vector2(x, y - (paddlespeed));
+                }
+            }
+            else if (Input.IsKeyboardKeyDown(KeyboardInput.Down))
+            {
+                float y = redpaddle.RPposition.Y;
+                float x = redpaddle.RPposition.X;
+
+                if (y + (paddlespeed) <= 500)
+                {
+                    redpaddle.RPposition = new Vector2(x, y + (paddlespeed));
+                }
             }
 
         }
