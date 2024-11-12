@@ -22,21 +22,30 @@ namespace Game10003
 
         Ball ball = new Ball();
 
+        // Paddle speed
         float paddlespeed = 5;
 
+        // Flat values for ballspeed
         float ballspeedx = 0;
         float ballspeedy = 0;
 
+        // Randomized which direction the ball goes at the start
         bool startdir = Random.CoinFlip();
 
+        // Individual Radii
         float ballradius = 42;
         float rpradius = 42;
         float bpradius = 42;
+        // Radii valued at 42 so that it could still read for collisions
+        // closer to the end of the paddles
 
+
+        // Flat values for radii values at the start
         float bpbRadii = 0;
         float rpbRadii = 0;
 
-        float randomY = Random.Float((float) -0.7, (float) 0.7);
+        // Randomizing bounce angle
+        float randomY = Random.Float((float) -0.8, (float) 0.8);
 
         public void Setup()
         {
@@ -52,6 +61,7 @@ namespace Game10003
         
         public void Update()
         {
+            Window.SetTitle("Pong Pt. 2: Electric Boogaloo");
             Window.ClearBackground(Color.Black);   
 
             // Paddle Renders
@@ -72,7 +82,7 @@ namespace Game10003
             ball.Ballposition.Y += ballspeedy;
 
             // slightly randomizing the angle the ball bounces at
-            randomY = Random.Float((float)-0.7, (float)0.7);
+            randomY = Random.Float((float)-0.8, (float)0.8);
 
             // Game Start
             if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
