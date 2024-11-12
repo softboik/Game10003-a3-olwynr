@@ -9,9 +9,7 @@ using System.Runtime.CompilerServices;
 // The namespace your code is in.
 namespace Game10003
 {
-    /// <summary>
-    ///     Your game code goes inside this class!
-    /// </summary>
+    
     public class Game
     {
         // Variables:
