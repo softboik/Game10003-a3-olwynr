@@ -113,6 +113,8 @@ namespace Game10003
             // Game Start
             if (Input.IsKeyboardKeyDown(KeyboardInput.Space))
             {
+                startdir = Random.CoinFlip();
+
                 float y = ball.Ballposition.Y;
                 float x = ball.Ballposition.X;
 
@@ -131,12 +133,20 @@ namespace Game10003
             // Scoreboards
             for (int i = 0; i < rScoreboard.Length; i++)
             {
+                if (i < redScore)
+                {
+                    rScoreboard[i].ChangeColor(Color.Red);
+                }
                 rScoreboard[i].Ballposition.Y = 28;
                 rScoreboard[i].Ballposition.X = 428 + (i * 42);
                 rScoreboard[i].Render();
             }
             for (int i = 0; i < rScoreboard.Length; i++)
             {
+                if (i < blueScore)
+                {
+                    bScoreboard[i].ChangeColor(Color.Blue);
+                }
                 bScoreboard[i].Ballposition.Y = 28;
                 bScoreboard[i].Ballposition.X = 372 - (i * 42);
                 bScoreboard[i].Render();
