@@ -15,9 +15,6 @@ namespace Game10003
     public class Game
     {
         // Variables:
-        Color RedTeam = new Color(200, 5, 5);
-        
-        Color BlueTeam = new Color(0, 160, 220);
 
         RedPaddle redpaddle = new RedPaddle();
 
@@ -32,9 +29,21 @@ namespace Game10003
 
         bool startdir = Random.CoinFlip();
 
+        float ballradius = 14;
+        float rpradius = 10;
+        float bpradius = 10;
+
+        float bpbRadii = 0;
+        float rpbRadii = 0;
+        // float circlesRadii = circleRadius1 + circleRadius2;
+        // bool doCirclesOverlap = Vector2.Distance(circlePosition1, circlePosition2) <= circlesRadii;
+
         public void Setup()
         {
             Window.SetSize(800, 600);
+            
+            bpbRadii = ballradius + bpradius;
+            rpbRadii = ballradius + rpradius;
         }
 
         /// <summary>
@@ -115,6 +124,17 @@ namespace Game10003
                     redpaddle.RPposition = new Vector2(x, y + (paddlespeed));
                 }
             }
+            
+            bool doPiecesOverlap = Vector2.Distance(ball.Ballposition, redpaddle.RPposition) <= rpbRadii;
+            if (doPiecesOverlap == true /*rpradius + ballradius <= 13*/ /*ball.Ballposition.X == 700*/)
+            {
+                ballspeedx = (ballspeedx * -1) - 1;
+            }
+            else if (ball.Ballposition.X == 100)
+            {
+                ballspeedx = (ballspeedx * -1) + 1;
+            }
+
 
         }
     }
